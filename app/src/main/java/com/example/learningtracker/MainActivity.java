@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, learningtracker.class);
+        int number=123456;
 
+        intent.putExtra("WelcomeMessage","السلام علیکم");
+        intent.putExtra("nmbr",number);
+        startActivity(intent);
     }
 }
