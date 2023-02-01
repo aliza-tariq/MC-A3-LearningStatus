@@ -3,6 +3,8 @@ package com.example.learningtracker;
 public class LearningModel {
     private String studentName;
 
+    private String studentDept;
+
     private int sabak;
     private boolean sabakStatus;
 
@@ -17,8 +19,9 @@ public class LearningModel {
     private String incorrectMazil;
 
 
-    public LearningModel(String studentName, int sabak, boolean sabakStatus, int sabki, boolean sabkiStatus, int manzil, boolean manzilStatus, String incorrectSabak, String incorrectSabki, String incorrectMazil) {
+    public LearningModel(String studentName,String studentDept, int sabak, boolean sabakStatus, int sabki, boolean sabkiStatus, int manzil, boolean manzilStatus, String incorrectSabak, String incorrectSabki, String incorrectMazil) {
         this.studentName = studentName;
+        this.studentDept=studentDept;
         this.sabak = sabak;
         this.sabakStatus = sabakStatus;
         this.sabki = sabki;
@@ -36,6 +39,14 @@ public class LearningModel {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getStudentDept() {
+        return studentDept;
+    }
+
+    public void setStudentDept(String studentDept) {
+        this.studentDept = studentDept;
     }
 
     public int getSabak() {
@@ -110,10 +121,12 @@ public class LearningModel {
         this.incorrectMazil = incorrectMazil;
     }
 
+
     @Override
     public String toString() {
         return "LearningModel{" +
                 "studentName='" + studentName + '\'' +
+                ", studentDept='" + studentDept + '\'' +
                 ", sabak=" + sabak +
                 ", sabakStatus=" + sabakStatus +
                 ", sabki=" + sabki +

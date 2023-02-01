@@ -37,7 +37,7 @@ class myRecyclerViewAdapter extends RecyclerView.Adapter<myRecyclerViewAdapter.M
 
         holder.data=studentList.get(position);
         holder.textViewFriendName.setText(holder.data.getStudentName());
-        holder.textViewdateFriend.setText(String.valueOf(holder.data.getSabak()));
+        holder.textViewCity.setText(String.valueOf(holder.data.getStudentDept()));
      //   holder.imageViewFriend.setImageResource(holder.data.getImageID());
        // holder.textViewCity.setText(holder.data.getCity());
 
@@ -59,7 +59,6 @@ class myRecyclerViewAdapter extends RecyclerView.Adapter<myRecyclerViewAdapter.M
             super(itemView);
             imageViewFriend = itemView.findViewById(R.id.imageViewFriendPicture);
             textViewFriendName = itemView.findViewById(R.id.textViewFriendName);
-            textViewdateFriend = itemView.findViewById(R.id.textViewDate);
             textViewCity = itemView.findViewById(R.id.textViewCity);
 
             //attach onclicklistener to item view

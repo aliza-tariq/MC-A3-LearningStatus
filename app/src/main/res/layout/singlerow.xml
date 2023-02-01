@@ -29,18 +29,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewFriendPicture"
         app:layout_constraintTop_toTopOf="@+id/imageViewFriendPicture" />
 
-    <TextView
-        android:id="@+id/textViewDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="DOB"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageViewFriendPicture"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFriendName" />
-
     <View
         android:id="@+id/divider3"
         android:layout_width="395dp"
@@ -59,11 +47,16 @@
         android:id="@+id/textViewCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
         android:text="City"
         android:textColor="@android:color/holo_green_dark"
         android:textColorHint="@android:color/holo_green_dark"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewDate"
-        app:layout_constraintTop_toTopOf="@+id/textViewDate" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewFriendPicture"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFriendName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

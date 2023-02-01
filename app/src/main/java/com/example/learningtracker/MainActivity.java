@@ -25,15 +25,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         setContentView(R.layout.activity_main);
 
 
-        LearningModel f0 = new LearningModel("Student1",1, false,0,false,0,false ,
+        LearningModel f0 = new LearningModel("Student1","Computer Science",1, false,0,false,0,false ,
                 "","","");
-        LearningModel f1 = new LearningModel("Student2",1, false,0,false,0,false ,
+        LearningModel f1 = new LearningModel("Student2","Information Technology",1, false,0,false,0,false ,
                 "","","");
-        LearningModel f2 = new LearningModel("Student3",1, false,0,false,0,false,
+        LearningModel f2 = new LearningModel("Student3","Software Engineering",1, false,0,false,0,false,
                 "","","");
-        LearningModel f3 = new LearningModel("Student4",1, false,0,false,0,false ,
+        LearningModel f3 = new LearningModel("Student4","Artificial Intelligence",1, false,0,false,0,false ,
                 "","","");
-        LearningModel f4 = new LearningModel("Student5",1, false,0,false,0,false,
+        LearningModel f4 = new LearningModel("Student5","Data Science",1, false,0,false,0,false,
                 "","","");
 
         studentList.addAll(Arrays.asList(new LearningModel[]{f0,f1,f2,f3,f4}));
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         int number=123456;
 
         intent.putExtra("WelcomeMessage","السلام علیکم");
-        intent.putExtra("nmbr",number);
+        intent.putExtra("stdName",studentList.get(position).getStudentName());
         startActivity(intent);
     }
 }
