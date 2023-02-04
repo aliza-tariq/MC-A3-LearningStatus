@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //adapter.notifyDataSetChanged();
 
 
-        try {
+       /* try {
             LearningModel learningModel;
             System.out.println("Learning Model = ?");
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         }
         catch (Exception e){
             Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
 
     }
