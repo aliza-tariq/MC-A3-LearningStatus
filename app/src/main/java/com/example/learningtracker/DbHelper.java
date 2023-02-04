@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -99,6 +100,27 @@ public class DbHelper extends SQLiteOpenHelper {
 
         cursorStd.close();
         return studentArrayList;
+    }
+
+    public LearningModel getStudent(String name) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorStd = db.rawQuery("select * from "+ LEARNING_TABLE +" WHERE "+ STUDENT_NAME
+                + "= ?",new String[]{ name });
+        System.out.println("Herer");
+        System.out.println(cursorStd);
+        LearningModel student1;
+        cursorStd.moveToFirst();
+            student1 = new LearningModel(cursorStd.getString(1),
+                    cursorStd.getString(2), cursorStd.getInt(3), cursorStd.getInt(4) == 1 ? true : false,
+                    cursorStd.getInt(5), cursorStd.getInt(6) == 1 ? true : false, cursorStd.getInt(7),
+                    cursorStd.getInt(8) == 1 ? true : false, cursorStd.getString(9), cursorStd.getString(10),
+                    cursorStd.getString(11));
+
+
+        cursorStd.close();
+        return student1;
     }
 
 }

@@ -22,7 +22,9 @@ public class learningtracker extends AppCompatActivity {
         btnMistakes=findViewById(R.id.btnMistakes);
 
         String name=getIntent().getStringExtra("stdName");
-        textView1.setText(name);
+        DbHelper dbHelper = new DbHelper(learningtracker.this);
+        LearningModel std1=dbHelper.getStudent(name);
+        textView1.setText(std1.getStudentName()+" + "+std1.getStudentDept());
 
         btnMistakes.setOnClickListener(new View.OnClickListener() {
             @Override
