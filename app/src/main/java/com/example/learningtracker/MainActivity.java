@@ -1,4 +1,4 @@
-package com.example.learningtracker;
+ package com.example.learningtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,6 +53,26 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         adapter = new myRecyclerViewAdapter(studentList,this) ;
         recyclerView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
+
+
+        try {
+            LearningModel learningModel;
+            System.out.println("Learning Model = ?");
+
+            Toast.makeText(MainActivity.this, f0.toString(), Toast.LENGTH_SHORT).show();
+            DbHelper dbHelper = new DbHelper(MainActivity.this);
+            dbHelper.addStudent(f0);
+            dbHelper.addStudent(f1);
+            dbHelper.addStudent(f2);
+            dbHelper.addStudent(f3);
+            dbHelper.addStudent(f4);
+
+        }
+        catch (Exception e){
+            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     @Override
