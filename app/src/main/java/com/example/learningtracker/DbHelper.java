@@ -90,8 +90,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 studentArrayList.add(new LearningModel(cursorStd.getString(1),
                         cursorStd.getString(2),cursorStd.getInt(3),cursorStd.getInt(4) == 1 ? true : false,
-                        cursorStd.getInt(5),cursorStd.getInt(6) == 1 ? true : false,,cursorStd.getInt(7),
-                        cursorStd.getInt(8) == 1 ? true : false,,cursorStd.getString(9),cursorStd.getString(10),
+                        cursorStd.getInt(5),cursorStd.getInt(6) == 1 ? true : false,cursorStd.getInt(7),
+                        cursorStd.getInt(8) == 1 ? true : false,cursorStd.getString(9),cursorStd.getString(10),
                         cursorStd.getString(11)));
             } while (cursorStd.moveToNext());
 
