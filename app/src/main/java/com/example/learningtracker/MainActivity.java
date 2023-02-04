@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     List<LearningModel> studentList = new ArrayList<>();
 
+    List<LearningModel> stdList = new ArrayList<>();
+
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -49,9 +51,25 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 //                true);
         recyclerView.setLayoutManager(layoutManager);
 
+         try {
+            LearningModel learningModel;
+            System.out.println("Learning Model = ?");
+
+            Toast.makeText(MainActivity.this, f0.toString(), Toast.LENGTH_SHORT).show();
+            DbHelper dbHelper = new DbHelper(MainActivity.this);
+            stdList=dbHelper.getAllStudents();
+             adapter = new myRecyclerViewAdapter( stdList,this) ;
+             recyclerView.setAdapter(adapter);
+
+
+        }
+        catch (Exception e){
+            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+        }
+
         //implements
-        adapter = new myRecyclerViewAdapter(studentList,this) ;
-        recyclerView.setAdapter(adapter);
+      //  adapter = new myRecyclerViewAdapter(studentList,this) ;
+        //recyclerView.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
 
 
@@ -81,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         int number=123456;
 
         intent.putExtra("WelcomeMessage","السلام علیکم");
-        intent.putExtra("stdName",studentList.get(position).getStudentName());
+        intent.putExtra("stdName",stdList.get(position).getStudentName());
         startActivity(intent);
     }
 }
