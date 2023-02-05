@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class learningtracker extends AppCompatActivity {
 
-    private TextView textView1,sabakNum,sabkiNum,manzilNum;
+    private TextView textView1,sabakNum,sabkiNum,manzilNum,sabakSt,sabkiSt,manzilSt;
     private Button btnMistakes,sabakC,sabakIC,sabkiC,sabkiIC,manzilC,manzilIC;
     private DbHelper dbHelper = new DbHelper(learningtracker.this);
 
@@ -31,6 +31,11 @@ public class learningtracker extends AppCompatActivity {
         sabkiIC=findViewById(R.id.nr2);
         manzilC=findViewById(R.id.r3);
         manzilIC=findViewById(R.id.nr3);
+
+        sabakSt=findViewById(R.id.statusSabak);
+        sabkiSt=findViewById(R.id.statusSabki);
+        manzilSt=findViewById(R.id.statusSabki);
+
 
         btnMistakes=findViewById(R.id.btnMistakes);
 
