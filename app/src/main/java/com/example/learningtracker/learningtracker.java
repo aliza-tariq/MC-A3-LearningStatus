@@ -50,6 +50,8 @@ public class learningtracker extends AppCompatActivity {
         sabkiNum.setText(String.valueOf(std1.getSabki()));
         manzilNum.setText(String.valueOf(std1.getManzil()));
 
+        setAllStatus();
+
         btnMistakes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,8 +74,14 @@ public class learningtracker extends AppCompatActivity {
                    // resetStudent(std1);
                 }
 
-                std1.setSabak((std1.getSabak()+1)%30);
-               
+                if((std1.getSabak()+1)%31==0)
+                {
+                    std1.setSabak(1);
+                }
+                else {
+                    std1.setSabak((std1.getSabak() + 1) % 31);
+                }
+
                 std1.setSabki(std1.getSabak()-1);
 
                 sabakNum.setText(String.valueOf(std1.getSabak()));
@@ -89,6 +97,8 @@ public class learningtracker extends AppCompatActivity {
             public void onClick(View view) {
                 sabakSt.setText("Incorrect Sabak again recite : "+std1.getSabak());
                 sabkiNum.setText(String.valueOf(std1.getSabki()));
+                std1.setIncorrectSabak(std1.getIncorrectSabak()+","+std1.getSabak());
+                sabakSt.setText(std1.getIncorrectSabak());
                 std1.setSabakStatus(true);
             }
         });
@@ -107,9 +117,22 @@ public class learningtracker extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                std1.setManzil((std1.getManzil()+1)%std1.getSabak());
+                if((std1.getManzil()+1)%std1.getSabak()==0)
+                    std1.setManzil(1);
+                else
+                    std1.setManzil((std1.getManzil()+1)%std1.getSabak());
                 manzilNum.setText(String.valueOf(std1.getManzil()));
-                dbHelper.updateStudent(std1);
+                manzilSt.setText("You have to Recite Manzil : "+std1.getManzil());
+                std1.setManzilStatus(false);
+               // dbHelper.updateStudent(std1);
+            }
+        });
+
+        manzilIC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                manzilSt.setText("Incorrect Manzil again recite : "+std1.getManzil());
+                std1.setManzilStatus(true);
             }
         });
 
