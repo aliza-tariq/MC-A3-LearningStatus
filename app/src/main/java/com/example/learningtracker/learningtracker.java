@@ -86,6 +86,8 @@ public class learningtracker extends AppCompatActivity {
                 sabakNum.setText(String.valueOf(std1.getSabak()));
                 sabkiNum.setText(String.valueOf(std1.getSabki()));
                 sabakSt.setText("You have to recite : "+std1.getSabak());
+                sabkiSt.setText("You have to recite : "+std1.getSabki());
+
                 std1.setSabakStatus(false);
                 //dbHelper.updateStudent(std1);
             }
@@ -114,6 +116,7 @@ public class learningtracker extends AppCompatActivity {
                 dbHelper.updateStudent(std1);
             }
         });
+
 
         manzilC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,14 +163,20 @@ public class learningtracker extends AppCompatActivity {
     }
     public void setAllStatus(LearningModel std)
     {
-        if(std.isSabakStatus()==false)
-            sabakSt.setText("You have to Recite : "+std.getSabak());
+        if(std.isSabakStatus()==false) {
+            sabakSt.setText("You have to Recite : " + std.getSabak());
+            if(std.getSabki()==0)
+                sabkiSt.setText("Not Started ");
+            else
+                sabkiSt.setText("You have to recite : "+std.getSabki());
+
+        }
         else if(std.isSabakStatus()==true)
             sabakSt.setText("Incorrect Sabak again recite : "+std.getSabak());
 
         if(std.isManzilStatus()==false) {
             if(std.getManzil()==0)
-                manzilSt.setText("No Manzil To Recite");
+                manzilSt.setText("Manzil Not Started");
             else
                 manzilSt.setText("You have to Recite Manzil : " + std.getManzil());
         }
