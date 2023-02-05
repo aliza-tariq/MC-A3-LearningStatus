@@ -15,6 +15,7 @@ public class learningtracker extends AppCompatActivity {
     private Button btnMistakes,sabakC,sabakIC,sabkiC,sabkiIC,manzilC,manzilIC;
     private DbHelper dbHelper = new DbHelper(learningtracker.this);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class learningtracker extends AppCompatActivity {
         String name=getIntent().getStringExtra("stdName");
         DbHelper dbHelper = new DbHelper(learningtracker.this);
         LearningModel std1=dbHelper.getStudent(name);
+
         if(std1.getSabak()==30)
         {
           //  resetStudent(std1);
@@ -49,6 +51,7 @@ public class learningtracker extends AppCompatActivity {
         sabakNum.setText(String.valueOf(std1.getSabak()));
         sabkiNum.setText(String.valueOf(std1.getSabki()));
         manzilNum.setText(String.valueOf(std1.getManzil()));
+        resetStudent(std1);
 
         setAllStatus(std1);
 
@@ -146,10 +149,14 @@ public class learningtracker extends AppCompatActivity {
     {
         std.setSabak(1);
         std.setSabki(0);
-       // std.setManzil(0);
+        std.setManzil(0);
         std.setSabakStatus(false);
         std.setSabkiStatus(false);
-        //std.setManzilStatus(false);
+        std.setManzilStatus(false);
+        std.setIncorrectMazil("");
+        std.setIncorrectSabak("");
+        std.setIncorrectSabki("");
+        dbHelper.updateStudent(std);
     }
     public void setAllStatus(LearningModel std)
     {
@@ -158,8 +165,12 @@ public class learningtracker extends AppCompatActivity {
         else if(std.isSabakStatus()==true)
             sabakSt.setText("Incorrect Sabak again recite : "+std.getSabak());
 
-        if(std.isManzilStatus()==false)
-            manzilSt.setText("You have to Recite Manzil : "+std.getManzil());
+        if(std.isManzilStatus()==false) {
+            if(std.getManzil()==0)
+                manzilSt.setText("No Manzil To Recite");
+            else
+                manzilSt.setText("You have to Recite Manzil : " + std.getManzil());
+        }
         else if(std.isManzilStatus()==true)
             manzilSt.setText("Incorrect Manzil again recite : "+std.getManzil());
 
