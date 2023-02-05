@@ -20,7 +20,6 @@ public class learningtracker extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learningtracker);
 
-     //   textView1=findViewById(R.id.textViewStd);
         sabakNum=findViewById(R.id.sabakNum);
         sabkiNum=findViewById(R.id.sabkiNum);
         manzilNum=findViewById(R.id.manzilNum);
@@ -42,6 +41,10 @@ public class learningtracker extends AppCompatActivity {
         String name=getIntent().getStringExtra("stdName");
         DbHelper dbHelper = new DbHelper(learningtracker.this);
         LearningModel std1=dbHelper.getStudent(name);
+        if(std1.getSabak()==30)
+        {
+          //  resetStudent(std1);
+        }
 //        textView1.setText(std1.getStudentName()+" + "+std1.getStudentDept());
         sabakNum.setText(String.valueOf(std1.getSabak()));
         sabkiNum.setText(String.valueOf(std1.getSabki()));
@@ -64,13 +67,29 @@ public class learningtracker extends AppCompatActivity {
         sabakC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(std1.getSabak()>30)
+                {
+                   // resetStudent(std1);
+                }
 
-                std1.setSabak(std1.getSabak()+1);
+                std1.setSabak((std1.getSabak()+1)%30);
+               
                 std1.setSabki(std1.getSabak()-1);
 
                 sabakNum.setText(String.valueOf(std1.getSabak()));
                 sabkiNum.setText(String.valueOf(std1.getSabki()));
-                dbHelper.updateStudent(std1);
+                sabakSt.setText("You have to recite : "+std1.getSabak());
+                std1.setSabakStatus(false);
+                //dbHelper.updateStudent(std1);
+            }
+        });
+
+        sabakIC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sabakSt.setText("Incorrect Sabak again recite : "+std1.getSabak());
+                sabkiNum.setText(String.valueOf(std1.getSabki()));
+                std1.setSabakStatus(true);
             }
         });
 
@@ -94,5 +113,15 @@ public class learningtracker extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void resetStudent(LearningModel std)
+    {
+        std.setSabak(1);
+        std.setSabki(0);
+       // std.setManzil(0);
+        std.setSabakStatus(false);
+        std.setSabkiStatus(false);
+        //std.setManzilStatus(false);
     }
 }
