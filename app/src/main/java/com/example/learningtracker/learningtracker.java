@@ -33,7 +33,7 @@ public class learningtracker extends AppCompatActivity {
 
         sabakSt=findViewById(R.id.statusSabak);
         sabkiSt=findViewById(R.id.statusSabki);
-        manzilSt=findViewById(R.id.statusSabki);
+        manzilSt=findViewById(R.id.statusManzil);
 
 
         btnMistakes=findViewById(R.id.btnMistakes);
@@ -50,7 +50,7 @@ public class learningtracker extends AppCompatActivity {
         sabkiNum.setText(String.valueOf(std1.getSabki()));
         manzilNum.setText(String.valueOf(std1.getManzil()));
 
-        setAllStatus();
+        setAllStatus(std1);
 
         btnMistakes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +69,6 @@ public class learningtracker extends AppCompatActivity {
         sabakC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(std1.getSabak()>30)
-                {
-                   // resetStudent(std1);
-                }
 
                 if((std1.getSabak()+1)%31==0)
                 {
@@ -97,7 +93,10 @@ public class learningtracker extends AppCompatActivity {
             public void onClick(View view) {
                 sabakSt.setText("Incorrect Sabak again recite : "+std1.getSabak());
                 sabkiNum.setText(String.valueOf(std1.getSabki()));
-                std1.setIncorrectSabak(std1.getIncorrectSabak()+","+std1.getSabak());
+                if(std1.getIncorrectSabak()==""||std1.getIncorrectSabak().length()==0)
+                    std1.setIncorrectSabak(String.valueOf(std1.getSabak()));
+                else
+                    std1.setIncorrectSabak(std1.getIncorrectSabak()+","+std1.getSabak());
                 sabakSt.setText(std1.getIncorrectSabak());
                 std1.setSabakStatus(true);
             }
@@ -132,6 +131,11 @@ public class learningtracker extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 manzilSt.setText("Incorrect Manzil again recite : "+std1.getManzil());
+                if(std1.getIncorrectMazil()==""||std1.getIncorrectMazil().length()==0)
+                    std1.setIncorrectMazil(String.valueOf(std1.getManzil()));
+                else
+                    std1.setIncorrectMazil(std1.getIncorrectMazil()+","+String.valueOf(std1.getManzil()));
+
                 std1.setManzilStatus(true);
             }
         });
@@ -146,5 +150,18 @@ public class learningtracker extends AppCompatActivity {
         std.setSabakStatus(false);
         std.setSabkiStatus(false);
         //std.setManzilStatus(false);
+    }
+    public void setAllStatus(LearningModel std)
+    {
+        if(std.isSabakStatus()==false)
+            sabakSt.setText("You have to Recite : "+std.getSabak());
+        else if(std.isSabakStatus()==true)
+            sabakSt.setText("Incorrect Sabak again recite : "+std.getSabak());
+
+        if(std.isManzilStatus()==false)
+            manzilSt.setText("You have to Recite Manzil : "+std.getManzil());
+        else if(std.isManzilStatus()==true)
+            manzilSt.setText("Incorrect Manzil again recite : "+std.getManzil());
+
     }
 }
