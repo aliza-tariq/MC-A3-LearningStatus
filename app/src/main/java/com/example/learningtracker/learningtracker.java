@@ -51,7 +51,7 @@ public class learningtracker extends AppCompatActivity {
         sabakNum.setText(String.valueOf(std1.getSabak()));
         sabkiNum.setText(String.valueOf(std1.getSabki()));
         manzilNum.setText(String.valueOf(std1.getManzil()));
-        resetStudent(std1);
+//        resetStudent(std1);
 
         setAllStatus(std1);
 
@@ -89,7 +89,7 @@ public class learningtracker extends AppCompatActivity {
                 sabkiSt.setText("You have to recite : "+std1.getSabki());
 
                 std1.setSabakStatus(false);
-                //dbHelper.updateStudent(std1);
+                dbHelper.updateStudent(std1);
             }
         });
 
@@ -102,8 +102,9 @@ public class learningtracker extends AppCompatActivity {
                     std1.setIncorrectSabak(String.valueOf(std1.getSabak()));
                 else
                     std1.setIncorrectSabak(std1.getIncorrectSabak()+","+std1.getSabak());
-                sabakSt.setText(std1.getIncorrectSabak());
                 std1.setSabakStatus(true);
+                dbHelper.updateStudent(std1);
+
             }
         });
 
@@ -114,6 +115,8 @@ public class learningtracker extends AppCompatActivity {
                 std1.setSabki(std1.getSabki()+1);
                 sabakNum.setText(String.valueOf(std1.getSabak()));
                 dbHelper.updateStudent(std1);
+                dbHelper.updateStudent(std1);
+
             }
         });
 
@@ -129,7 +132,7 @@ public class learningtracker extends AppCompatActivity {
                 manzilNum.setText(String.valueOf(std1.getManzil()));
                 manzilSt.setText("You have to Recite Manzil : "+std1.getManzil());
                 std1.setManzilStatus(false);
-               // dbHelper.updateStudent(std1);
+                dbHelper.updateStudent(std1);
             }
         });
 
@@ -143,6 +146,8 @@ public class learningtracker extends AppCompatActivity {
                     std1.setIncorrectMazil(std1.getIncorrectMazil()+","+String.valueOf(std1.getManzil()));
 
                 std1.setManzilStatus(true);
+                dbHelper.updateStudent(std1);
+
             }
         });
 
